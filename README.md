@@ -1,3 +1,8 @@
+<!--
+    SPDX-License-Identifier: BSD-2-Clause
+    SPDX-FileCopyrightText: 2021 Adriaanb de Groot <groot@kde.org>
+-->
+
 # Calamares Actions
 
 > This repository holds GitHub actions used by the **other** Calamares
