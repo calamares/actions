@@ -1,0 +1,52 @@
+# SPDX-License-Identifier: BSD-2-Clause
+# SPDX-FileCopyrightText: 2021 Adriaan de Groot <groot@kde.org>
+
+name: 'Prepare openSUSE'
+description: 'Install build-dependencies on openSUSE'
+
+runs:
+  using: "composite"
+  steps:
+    - shell: bash
+      run: |
+        zypper --non-interactive up
+        zypper --non-interactive in git-core jq curl
+        # From deploycala.py
+        zypper --non-interactive in \
+          "autoconf" \
+          "automake" \
+          "bison" \
+          "flex" \
+          "git" \
+          "libtool" \
+          "m4" \
+          "make" \
+          "cmake" \
+          "extra-cmake-modules" \
+          "gcc-c++" \
+          "libqt5-qtbase-devel" \
+          "libqt5-linguist-devel" \
+          "libqt5-qtsvg-devel" \
+          "libqt5-qtdeclarative-devel" \
+          "libqt5-qtwebengine-devel" \
+          "yaml-cpp-devel" \
+          "libpolkit-qt5-1-devel" \
+          "kservice-devel" \
+          "kpackage-devel" \
+          "kparts-devel" \
+          "kcrash-devel" \
+          "kpmcore-devel" \
+          "plasma5-workspace-devel" \
+          "plasma-framework-devel" \
+          "libpwquality-devel" \
+          "parted-devel" \
+          "python3-devel" \
+          "boost-devel" \
+          "libboost_python-py3-*-devel"
+        # Additional dependencies
+        zypper --non-interactive in \
+          libicu-devel \
+          libAppStreamQt-devel \
+          libatasmart-devel
+
+          
