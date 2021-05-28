@@ -9,6 +9,18 @@
 > repositories (e.g. Calamares itself, and -extensions) for bits
 > and pieces of their workflows.
 
+## Generic-Build
+
+GitHub action with a generic build sequence for Calamares repositories.
+Once the source is set up, `cmake;make;make install` is the general
+approach, so this action does that.
+
+In passing, it sets **one** output:
+
+- *git_summary*:
+  The one-line git summary (first line of commit message plus commit hash)
+  that the build starts with.
+
 ## Matrix-Notify
 
 GitHub action for notifications on Matrix. This action is
