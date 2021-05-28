@@ -9,6 +9,7 @@
 > repositories (e.g. Calamares itself, and -extensions) for bits
 > and pieces of their workflows.
 
+
 ## Generic-Build
 
 GitHub action with a generic build sequence for Calamares repositories.
@@ -21,6 +22,7 @@ In passing, it sets **one** output:
   The one-line git summary (first line of commit message plus commit hash)
   that the build starts with.
 
+  
 ## Matrix-Notify
 
 GitHub action for notifications on Matrix. This action is
@@ -50,3 +52,10 @@ with:
 ```
 
 Note the use of `${{ secrets. }}` to pass in secrets for the action.
+
+
+## Prepare-*
+
+The various `prepare-*` actions setup and configure the host for
+building Calamares; these actions should run before `generic-build`.
+Pick the one that matches the host container.
