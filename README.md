@@ -1,6 +1,6 @@
 <!--
     SPDX-License-Identifier: BSD-2-Clause
-    SPDX-FileCopyrightText: 2021 Adriaanb de Groot <groot@kde.org>
+    SPDX-FileCopyrightText: 2021 Adriaan de Groot <groot@kde.org>
 -->
 
 # Calamares Actions
