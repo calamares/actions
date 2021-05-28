@@ -1,2 +1,3 @@
-# matrix-notify
-GitHub action for notifying on Matrix
+# Matrix-Notify
+
+GitHub action for notifying on Matrix.
