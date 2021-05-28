@@ -16,9 +16,9 @@ GitHub action with a generic build sequence for Calamares repositories.
 Once the source is set up, `cmake;make;make install` is the general
 approach, so this action does that.
 
-In passing, it sets **one** output:
+In passing, it sets one output:
 
-- *git_summary*:
+- *git-summary*:
   The one-line git summary (first line of commit message plus commit hash)
   that the build starts with.
 

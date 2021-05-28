@@ -4,15 +4,21 @@
 name: 'Generic Build'
 description: 'Configure, build and install the sources'
 
+outputs:
+  git-summary:
+    description: "git summary (first line of commit message plus commit hash)"
+    value: ${{ steps.pre-build.outputs.git-summary }}
+
 runs:
   using: "composite"
   steps:
-    - shell: bash
+    - id: pre-build
+      shell: bash
       run: |
         test -n "$BUILDDIR" || { echo "! \$BUILDDIR not set" ; exit 1 ; }
         mkdir -p $BUILDDIR
         test -f $SRCDIR/CMakeLists.txt || { echo "! Missing $SRCDIR/CMakeLists.txt" ; exit 1 ; }
-        echo "::set-output name=git_summary::"`git log -1 --abbrev-commit --pretty=oneline --no-decorate ${{ github.event.head_commit.id }}`
+        echo "::set-output name=git-summary::"`git log -1 --abbrev-commit --pretty=oneline --no-decorate ${{ github.event.head_commit.id }}`
     - shell: bash
       run: |
         cd "$BUILDDIR" && cmake $CMAKE_ARGS $SRCDIR
