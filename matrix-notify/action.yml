@@ -19,5 +19,7 @@ runs:
   using: "composite"
   steps:
     - shell: bash
+      env:
+        MESSAGE: ${{ inputs.message }}
       run: |
-        curl -s -XPOST -d "$( echo "${{ inputs.message }}" | jq -Rsc '{"msgtype": "m.text", "body":@text}' )" "https://matrix.org/_matrix/client/r0/rooms/%21${{ inputs.room }}/send/m.room.message?access_token=${{ inputs.token }}" > /dev/null
+        curl -s -XPOST -d "$( echo "$MESSAGE" | jq -Rsc '{"msgtype": "m.text", "body":@text}' )" "https://matrix.org/_matrix/client/r0/rooms/%21${{ inputs.room }}/send/m.room.message?access_token=${{ inputs.token }}" > /dev/null
