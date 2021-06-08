@@ -41,8 +41,8 @@ runs:
           "libpwquality-devel" \
           "parted-devel" \
           "python3-devel" \
-          "boost-devel" \
-          "libboost_python-py3-*-devel"
+          "libboost_headers1_66*-devel" \
+          "libboost_python-py3-1_66*-devel"
         # Additional dependencies
         zypper --non-interactive in \
           libicu-devel \
