@@ -13,8 +13,9 @@ runs:
         test -n "$SRCDIR" || { echo "! \$SRCDIR not set" ; exit 1 ; }
         mkdir -p "$SRCDIR"
         test -d "$SRCDIR" || { echo "! Could not create $SRCDIR" ; exit 1 ; }
+        who am i ; ls -la "$SRCDIR"
     - id: clone
       shell: bash
       run: |
-        cd "$SRCDIR" && git clone -b "${{ github.ref_name }}" "https://github.com/${{ github.repository }}" .
+        git clone -b "${{ github.ref_name }}" "https://github.com/${{ github.repository }}" "$SRCDIR"
         cd "$SRCDIR" && git describe
