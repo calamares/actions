@@ -1,0 +1,20 @@
+# SPDX-License-Identifier: BSD-2-Clause
+# SPDX-FileCopyrightText: 2021 Adriaan de Groot <groot@kde.org>
+
+name: 'Generic Git Checkout'
+description: 'Checkout Calamares-related sources'
+
+runs:
+  using: "composite"
+  steps:
+    - id: pre-checkout
+      shell: bash
+      run: |
+        test -n "$SRCDIR" || { echo "! \$SRCDIR not set" ; exit 1 ; }
+        mkdir -p "$SRCDIR"
+        test -d "$SRCDIR" || { echo "! Could not create $SRCDIR" ; exit 1 ; }
+    - id: clone
+      shell: bash
+      run: |
+        cd "$SRCDIR" && git clone -b "${{ github.ref_name }}" "https://github.com/${{ github.repository }}" .
+        cd "$SRCDIR" && git describe
