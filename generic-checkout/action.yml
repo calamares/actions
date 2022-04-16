@@ -1,6 +1,14 @@
 # SPDX-License-Identifier: BSD-2-Clause
 # SPDX-FileCopyrightText: 2021 Adriaan de Groot <groot@kde.org>
-
+#
+# On Ubuntu VMs, $SRCDIR is created and assigned UID 1001;
+# ls -la shows "1001:avahi". However, the git checkout is
+# done as root, UID 0. The latest git security fixes refuse
+# to work in a directory owned by someone else.
+#
+# chown the source directory to avoid this (an alternative
+# would be to ` git config --global --add safe.directory "$SRCDIR" `.
+#
 name: 'Generic Git Checkout'
 description: 'Checkout Calamares-related sources'
 
@@ -13,11 +21,9 @@ runs:
         test -n "$SRCDIR" || { echo "! \$SRCDIR not set" ; exit 1 ; }
         mkdir -p "$SRCDIR"
         test -d "$SRCDIR" || { echo "! Could not create $SRCDIR" ; exit 1 ; }
-        id -a ; echo "xx $SRCDIR"
-        who am i ; ls -la "$SRCDIR"
-        git config --global --add safe.directory "$SRCDIR"
+        chown `id -u`:`id -g` "$SRCDIR" || exit 1
     - id: clone
       shell: bash
       run: |
-        git clone -b "${{ github.ref_name }}" "https://github.com/${{ github.repository }}" "$SRCDIR"
+        git clone -b "${{ github.ref_name }}" "https://github.com/${{ github.repository }}" "$SRCDIR" || exit 1
         cd "$SRCDIR" && git describe
