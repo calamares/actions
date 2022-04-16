@@ -13,7 +13,9 @@ runs:
         test -n "$SRCDIR" || { echo "! \$SRCDIR not set" ; exit 1 ; }
         mkdir -p "$SRCDIR"
         test -d "$SRCDIR" || { echo "! Could not create $SRCDIR" ; exit 1 ; }
+        id -a ; echo "xx $SRCDIR"
         who am i ; ls -la "$SRCDIR"
+        git config --global --add safe.directory "$SRCDIR"
     - id: clone
       shell: bash
       run: |
