@@ -22,8 +22,15 @@ runs:
         mkdir -p "$SRCDIR"
         test -d "$SRCDIR" || { echo "! Could not create $SRCDIR" ; exit 1 ; }
         chown `id -u`:`id -g` "$SRCDIR" || exit 1
-    - id: clone
+    - id: clone-regular
       shell: bash
+      if: ${{ github.event_name != 'pull_request' }}
       run: |
         git clone -b "${{ github.ref_name }}" "https://github.com/${{ github.repository }}" "$SRCDIR" || exit 1
+        cd "$SRCDIR" && git describe
+    - id: clone-pr
+      shell: bash
+      if: ${{ github.event_name == 'pull_request' }}
+      run: |
+        git clone -b "${{ github.head_ref}}" "https://github.com/${{ github.repository }}" "$SRCDIR" || exit 1
         cd "$SRCDIR" && git describe
