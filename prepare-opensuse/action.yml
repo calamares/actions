@@ -2,7 +2,7 @@
 # SPDX-FileCopyrightText: 2021 Adriaan de Groot <groot@kde.org>
 
 name: 'Prepare openSUSE'
-description: 'Install build-dependencies on openSUSE'
+description: 'Install build-dependencies on openSUSE Tumbleweed'
 
 runs:
   using: "composite"
@@ -40,9 +40,9 @@ runs:
           "plasma-framework-devel" \
           "libpwquality-devel" \
           "parted-devel" \
-          "python3-devel" \
-          "libboost_headers1_66*-devel" \
-          "libboost_python-py3-1_66*-devel"
+          "python-devel" \
+          "libboost_headers-devel" \
+          "libboost_python3-devel"
         # Additional dependencies
         zypper --non-interactive in \
           libicu-devel \
