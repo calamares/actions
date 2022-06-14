@@ -10,22 +10,17 @@ runs:
     - shell: bash
       run: |
           apt-get update
-          apt-get -y install git-core jq
+          # Make sure we can send notices later
+          apt-get -y install git-core jq curl
           apt-get -y install \
             build-essential \
             cmake \
             extra-cmake-modules \
             gettext \
-            kio-dev \
             libatasmart-dev \
+            libappstreamqt-dev \
             libboost-python-dev \
-            libkf5config-dev \
-            libkf5coreaddons-dev \
-            libkf5i18n-dev \
-            libkf5iconthemes-dev \
-            libkf5parts-dev \
-            libkf5service-dev \
-            libkf5solid-dev \
+            libicu-dev \
             libparted-dev \
             libpolkit-qt5-1-dev \
             libqt5svg5-dev \
@@ -40,10 +35,16 @@ runs:
             qttools5-dev-tools
           # Same name as on KDE neon, different version
           apt-get -y install libkpmcore-dev
-          # Additional dependencies
+          # Additional dependencies (KF5, +)
           apt-get -y install \
-            libappstreamqt-dev \
-            libicu-dev \
+            kio-dev \
+            libkf5config-dev \
+            libkf5coreaddons-dev \
+            libkf5i18n-dev \
+            libkf5iconthemes-dev \
+            libkf5parts-dev \
+            libkf5service-dev \
+            libkf5solid-dev \
             libkf5crash-dev \
             libkf5package-dev \
             libkf5plasma-dev \
