@@ -1,0 +1,13 @@
+# SPDX-License-Identifier: BSD-2-Clause
+# SPDX-FileCopyrightText: 2021 Adriaan de Groot <groot@kde.org>
+
+name: 'ABI Detect'
+description: 'Detect changes in ABI'
+
+runs:
+  using: "composite"
+  steps:
+    - id: run-abicheck
+      shell: bash
+      run: |
+        ./ci/abicheck.sh
